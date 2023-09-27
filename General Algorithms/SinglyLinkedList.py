@@ -1,41 +1,49 @@
+# Define a class for a single node in the linked list
 class Node:
-   def __init__(self, dataval=None):
-      self.dataval = dataval
-      self.nextval = None
+    # Constructor to initialize a node with data and a reference to the next node
+    def __init__(self, dataval=None):
+        self.dataval = dataval  # Store the data in the node
+        self.nextval = None     # Initialize the reference to the next node as None
 
+# Define a class for the linked list itself
 class LinkedList:
-   def __init__(self):
-      self.headval = None
+    # Constructor to initialize the linked list with an empty head node
+    def __init__(self):
+        self.headval = None  # Initialize the head of the linked list as None
 
-   def printList(self):
-      printval = self.headval
-      while printval is not None:
-         print (printval.dataval)
-         printval = printval.nextval
-         
-   def insertAtBeginning(self,node):
-      new_node = Node(node)
-      new_node.nextval = self.headval
-      self.headval = new_node
-      
-   def insertAtLast(self,node):
-      if self.headval == None:
-        self.headval = Node(node)
-        return
-      else:
-        last = self.headval
-        while last.nextval:
-            last = last.nextval
-        last.nextval = Node(node)
-        
-   def insertAtMiddle(self,middleNode,node):
-      if middleNode is None:
-        print("The mentioned node is absent")
-        return
-      new_node = Node(node)
-      new_node.nextval = middleNode.nextval
-      middleNode.nextval = new_node
-      
+    # Function to print the elements of the linked list
+    def printList(self):
+        printval = self.headval  # Start at the head of the linked list
+        while printval is not None:
+            print(printval.dataval)  # Print the data of the current node
+            printval = printval.nextval  # Move to the next node in the list
+
+    # Function to insert a node at the beginning of the linked list
+    def insertAtBeginning(self, node):
+        new_node = Node(node)  # Create a new node with the provided data
+        new_node.nextval = self.headval  # Set the new node's next reference to the current head
+        self.headval = new_node  # Update the head to the new node, making it the new head
+
+    # Function to insert a node at the end of the linked list
+    def insertAtLast(self, node):
+        if self.headval is None:  # Check if the linked list is empty
+            self.headval = Node(node)  # If empty, set the new node as the head
+            return
+        else:
+            last = self.headval  # Start at the head
+            while last.nextval:
+                last = last.nextval  # Traverse to the last node in the list
+            last.nextval = Node(node)  # Set the new node as the next node of the last node
+
+    # Function to insert a node after a specified node in the linked list
+    def insertAtMiddle(self, middleNode, node):
+        if middleNode is None:
+            print("The mentioned node is absent")  # Check if the specified node is absent
+            return
+        new_node = Node(node)  # Create a new node with the provided data
+        new_node.nextval = middleNode.nextval  # Update the new node's next reference
+        middleNode.nextval = new_node  # Update the next reference of the specified node
+
    # Function to remove a node from a linked list
    def removeNode(self, Removekey):
         # Start with the head of the linked list
